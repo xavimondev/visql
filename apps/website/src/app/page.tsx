@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Github } from 'lucide-react'
 import { ModeToggle } from '@/components/mode-toggle'
-import { Button } from '@/components/ui/button'
+import { CodeEditor } from '@/components/code-editor'
 
 export default function Home() {
   return (
@@ -28,8 +28,15 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-        <Button variant='outline'>Click me</Button>
+      <main className='w-full p-2'>
+        <div className='flex flex-col gap-2 w-full'>
+          {/* <ToggleTheme /> */}
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-3 w-full'>
+            <div className='flex flex-col gap-4 w-full'>
+              <CodeEditor code={'SELECT * FROM database'} />
+            </div>
+          </div>
+        </div>
       </main>
     </>
   )
