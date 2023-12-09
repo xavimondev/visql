@@ -25,3 +25,5 @@ create table
     foreign key (role_id) references roles (id)
 );
 `
+
+export const ADD_COMMAND = `npx dbac add`

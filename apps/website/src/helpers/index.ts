@@ -6,3 +6,7 @@ export const toBase64 = (file: File) => {
     reader.onerror = (error) => reject(error)
   })
 }
+
+export const copyToClipboard = async (content: string) => {
+  if (navigator.clipboard) navigator.clipboard.writeText(content)
+}

@@ -3,6 +3,7 @@ import { Github } from 'lucide-react'
 import { ModeToggle } from '@/components/mode-toggle'
 import { CodeEditor } from '@/components/code-editor'
 import { Dropzone } from '@/components/dropzone'
+import { CommandBox } from '@/components/command-box'
 
 export default function Home() {
   return (
@@ -33,7 +34,8 @@ export default function Home() {
         <div className='flex flex-col gap-2 w-full'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-3 w-full'>
             <Dropzone />
-            <div className='flex flex-col gap-4 w-full'>
+            <div className='flex flex-col gap-2 w-full'>
+              <CommandBox generationId='x4iu9ls' />
               <CodeEditor code={'SELECT * FROM database'} />
             </div>
           </div>
