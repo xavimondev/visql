@@ -1,5 +1,6 @@
 'use client'
 import { useCallback, useState } from 'react'
+import { type RequestOptions } from 'ai'
 import Image from 'next/image'
 import { useDropzone } from 'react-dropzone'
 import { TableProperties } from 'lucide-react'
@@ -23,13 +24,21 @@ function DropzoneBody() {
   )
 }
 
-export function Dropzone() {
+type DropzoneProps = {
+  complete: (
+    prompt: string,
+    options?: RequestOptions | undefined
+  ) => Promise<string | null | undefined>
+}
+
+export function Dropzone({ complete }: DropzoneProps) {
   const [isUploading, setIsUploading] = useState<boolean>(false)
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
   const onDrop = useCallback(async (files: File[]) => {
     const file = files[0]
     setIsUploading(true)
     const base64 = await toBase64(file)
+    complete(base64)
     setPreview(base64)
 
     setTimeout(() => {
