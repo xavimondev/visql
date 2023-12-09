@@ -1,17 +1,29 @@
 'use client'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useCompletion } from 'ai/react'
 import { Github } from 'lucide-react'
+import ShortUniqueId from 'short-unique-id'
 import { ModeToggle } from '@/components/mode-toggle'
 import { CodeEditor } from '@/components/code-editor'
 import { Dropzone } from '@/components/dropzone'
 import { CommandBox } from '@/components/command-box'
 
 export default function Home() {
+  const [generationId, setGenerationId] = useState<string | undefined>(
+    undefined
+  )
   const { complete, completion } = useCompletion({
     api: 'api/code-generation',
     onFinish: async (_, completion) => {
-      console.log(completion)
+      const uid = new ShortUniqueId({ length: 10 })
+      const id = uid.rnd()
+      const generation = {
+        code: id,
+        sql_table: completion
+      }
+      setGenerationId(id)
+      console.log(generation)
     },
     onError: (err) => {
       console.log(err)
@@ -47,7 +59,7 @@ export default function Home() {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-3 w-full'>
             <Dropzone complete={complete} />
             <div className='flex flex-col gap-2 w-full'>
-              <CommandBox generationId='x4iu9ls' />
+              <CommandBox generationId={generationId} />
               <CodeEditor code={completion} />
             </div>
           </div>
