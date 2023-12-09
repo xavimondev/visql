@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Github } from 'lucide-react'
 import { ModeToggle } from '@/components/mode-toggle'
 import { CodeEditor } from '@/components/code-editor'
+import { Dropzone } from '@/components/dropzone'
 
 export default function Home() {
   return (
@@ -30,8 +31,8 @@ export default function Home() {
       </header>
       <main className='w-full p-2'>
         <div className='flex flex-col gap-2 w-full'>
-          {/* <ToggleTheme /> */}
           <div className='grid grid-cols-1 md:grid-cols-2 gap-3 w-full'>
+            <Dropzone />
             <div className='flex flex-col gap-4 w-full'>
               <CodeEditor code={'SELECT * FROM database'} />
             </div>
