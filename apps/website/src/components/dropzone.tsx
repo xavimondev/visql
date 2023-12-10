@@ -60,7 +60,22 @@ export function Dropzone({ complete }: DropzoneProps) {
     <>
       <div
         {...getRootProps({ className: 'dropzone' })}
-        className='w-full h-full flex items-center justify-center bg-[#161617] z-0 rounded-xl shadow-sm transition-colors duration-200 ease-in cursor-pointer border-dashed border border-gray-600 hover:border-gray-300'
+        className='w-full 
+        h-full 
+        flex 
+        items-center 
+        justify-center 
+        bg-[#0b0b0b] 
+        z-0 rounded-xl 
+        shadow-sm 
+        transition-colors 
+        duration-200 
+        ease-in-out 
+        cursor-pointer 
+        border 
+        border-dashed 
+        border-gray-600 
+        hover:border-gray-300'
       >
         <input {...getInputProps()} />
         {preview ? (
