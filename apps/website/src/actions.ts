@@ -1,6 +1,6 @@
 'use server'
-import { signInWithEmail } from '@/services/auth'
 import { z } from 'zod'
+import { signInWithEmail } from '@/services/auth-server'
 
 const schema = z.object({
   email: z

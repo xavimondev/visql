@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useFormStatus, useFormState } from 'react-dom'
 import { toast } from 'sonner'
 import { Github, LoaderIcon } from 'lucide-react'
-import { signInWithGithub } from '@/services/auth'
+import { signInWithGithub } from '@/services/auth-client'
 import { sentEmail } from '@/actions'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -41,7 +41,7 @@ export function GithubAuthButton() {
   )
 }
 
-export function UserAuthForm() {
+export function LoginForm() {
   const [state, formAction] = useFormState(sentEmail, initialState)
 
   useEffect(() => {

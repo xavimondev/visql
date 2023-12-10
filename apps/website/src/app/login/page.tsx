@@ -1,6 +1,15 @@
-import { UserAuthForm } from '@/components/user-auth-form'
+import { redirect } from 'next/navigation'
+import { getSession } from '@/services/auth-server'
+import { LoginForm } from '@/components/login-form'
 
-export default function Login() {
+export default async function Login() {
+  const {
+    data: { session }
+  } = await getSession()
+  if (session) {
+    return redirect('/dashboard')
+  }
+
   return (
     <div className='max-w-lg mx-auto min-h-screen grid place-items-center'>
       <div className='w-full flex flex-col gap-4 border border-gray-600/10 rounded-lg p-10'>
@@ -12,7 +21,7 @@ export default function Login() {
             Enter your email below to create your account
           </p>
         </div>
-        <UserAuthForm />
+        <LoginForm />
       </div>
     </div>
   )
