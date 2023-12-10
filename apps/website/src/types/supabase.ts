@@ -13,6 +13,7 @@ export interface Database {
         Row: {
           cmd_code: string
           created_at: string
+          diagram_url: string
           id: string
           sql_code: string
           user_id: string
@@ -20,6 +21,7 @@ export interface Database {
         Insert: {
           cmd_code: string
           created_at?: string
+          diagram_url: string
           id?: string
           sql_code: string
           user_id: string
@@ -27,6 +29,7 @@ export interface Database {
         Update: {
           cmd_code?: string
           created_at?: string
+          diagram_url?: string
           id?: string
           sql_code?: string
           user_id?: string
