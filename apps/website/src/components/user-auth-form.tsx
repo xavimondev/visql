@@ -1,6 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import { useFormStatus, useFormState } from 'react-dom'
+import { toast } from 'sonner'
 import { Github, LoaderIcon } from 'lucide-react'
 import { signInWithGithub } from '@/services/auth'
 import { sentEmail } from '@/actions'
@@ -45,7 +46,9 @@ export function UserAuthForm() {
 
   useEffect(() => {
     if (state && state.message) {
-      console.log(state.message)
+      toast.success(state.message, {
+        duration: 5000
+      })
     }
   }, [state])
 
