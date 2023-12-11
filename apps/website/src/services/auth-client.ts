@@ -12,3 +12,14 @@ export const signInWithGithub = async () => {
   if (error) return null
   return data
 }
+
+export const getUserId = async () => {
+  const supabase = await createSupabaseBrowserClient()
+  const {
+    data: { session },
+    error
+  } = await supabase.auth.getSession()
+  if (!session || error) return null
+
+  return session.user.id
+}
