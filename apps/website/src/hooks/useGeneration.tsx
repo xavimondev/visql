@@ -2,9 +2,8 @@ import { useState, useRef } from 'react'
 import { useCompletion } from 'ai/react'
 import { toast } from 'sonner'
 import ShortUniqueId from 'short-unique-id'
+import { saveGenerationServer } from '@/actions'
 import { uploadFile } from '@/services/storage'
-import { addGeneration } from '@/services/generation'
-import { getUserId } from '@/services/auth-client'
 
 export const useGeneration = () => {
   const [generationId, setGenerationId] = useState<string | undefined>(
@@ -20,6 +19,7 @@ export const useGeneration = () => {
       console.log(err)
     }
   })
+
   const saveGeneration = async ({ completion }: { completion: string }) => {
     const file = fileUploaded.current
     // Uploading file
@@ -35,14 +35,12 @@ export const useGeneration = () => {
     // Saving in db the generation
     const uid = new ShortUniqueId({ length: 10 })
     const id = uid.rnd()
-    const user_id = await getUserId()
     const generation = {
       cmd_code: id,
       sql_code: completion,
-      diagram_url: path,
-      user_id: user_id!
+      diagram_url: path
     }
-    toast.promise(addGeneration(generation), {
+    toast.promise(saveGenerationServer({ generation }), {
       loading: 'Saving Generation...',
       success: () => {
         return `Generation saved successfully.`

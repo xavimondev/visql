@@ -1,6 +1,8 @@
 'use server'
+import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { signInWithEmail } from '@/services/auth-server'
+import { addGeneration } from '@/services/generation'
 
 const schema = z.object({
   email: z
@@ -28,4 +30,14 @@ export const sentEmail = async (prevState: any, formData: FormData) => {
   } catch (error) {
     return { errors: `An error has ocurred while sending email` }
   }
+}
+
+export const saveGenerationServer = async ({
+  generation
+}: {
+  generation: any
+}) => {
+  const result = await addGeneration(generation)
+  revalidatePath('/dashboard')
+  return result
 }
