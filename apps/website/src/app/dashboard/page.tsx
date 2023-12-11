@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { GalleryVertical, ScrollText } from 'lucide-react'
 import { redirect } from 'next/navigation'
+import { createSupabaseServerClient } from '@/db/supabase-server'
 import { getSession } from '@/services/auth-server'
 import { UserNavbar } from '@/components/user-navbar'
 import { PanelGeneration } from '@/components/panel-generation'
@@ -18,6 +19,12 @@ export default async function Dashboard() {
     user: { user_metadata }
   } = session
   const { avatar_url, full_name, user_name } = user_metadata
+
+  const supabase = await createSupabaseServerClient()
+  const { data, error } = await supabase
+    .from('generations')
+    .select('id,cmd_code,sql_code,diagram_url')
+    .order('created_at', { ascending: false })
 
   return (
     <>
@@ -46,7 +53,7 @@ export default async function Dashboard() {
                 <GalleryVertical className='w-5 h-5' />
                 <h2 className='font-semibold'>Generations</h2>
               </div>
-              {true ? (
+              {data?.length === 0 || error ? (
                 <div className='w-full h-full flex flex-col items-center justify-center text-center'>
                   <ScrollText className='w-12 h-12' />
                   <h3 className='mt-4 text-lg font-semibold'>
@@ -57,23 +64,28 @@ export default async function Dashboard() {
                   </p>
                 </div>
               ) : (
-                <div className='flex-1 flex flex-col-reverse overflow-auto no-scrollbar'>
-                  <div className='flex flex-col gap-3'>
-                    <button className='flex w-full h-full shrink-0 z-10 cursor-pointer relative outline-none focus-visible:ring-1 focus:ring-gray-700 rounded-md min-h-[25px] min-w-[40px]'>
-                      <div className='w-full rounded-md border border-black dark:border-gray-500 overflow-hidden'>
-                        <div className='w-full h-full hover:opacity-100 opacity-80 transition-opacity duration-300 ease-in-out'>
-                          <Image
-                            alt='Thumbnail database diagram'
-                            loading='lazy'
-                            width='320'
-                            height='180'
-                            className='object-cover aspect-video'
-                            src='/photo.webp'
-                          />
+                <div className='flex flex-col gap-3'>
+                  {data?.map((generation) => {
+                    return (
+                      <button
+                        key={generation.id}
+                        className='flex w-full h-full z-10 cursor-pointer relative outline-none focus-visible:ring-1 focus:ring-gray-700 rounded-md min-h-[25px] min-w-[30px]'
+                      >
+                        <div className='w-full rounded-md border border-black dark:border-gray-500 overflow-hidden'>
+                          <div className='w-full h-full hover:opacity-100 opacity-80 transition-opacity duration-300 ease-in-out'>
+                            <Image
+                              alt='Thumbnail database diagram'
+                              loading='lazy'
+                              width='300'
+                              height='180'
+                              className='object-cover aspect-video'
+                              src={generation.diagram_url}
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </button>
-                  </div>
+                      </button>
+                    )
+                  })}
                 </div>
               )}
             </nav>
