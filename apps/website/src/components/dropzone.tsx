@@ -1,5 +1,5 @@
 'use client'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, MutableRefObject } from 'react'
 import { type RequestOptions } from 'ai'
 import Image from 'next/image'
 import { useDropzone } from 'react-dropzone'
@@ -29,21 +29,22 @@ type DropzoneProps = {
     prompt: string,
     options?: RequestOptions | undefined
   ) => Promise<string | null | undefined>
+  fileUploaded: MutableRefObject<File | undefined>
 }
 
-export function Dropzone({ complete }: DropzoneProps) {
+export function Dropzone({ complete, fileUploaded }: DropzoneProps) {
   const [isUploading, setIsUploading] = useState<boolean>(false)
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
   const onDrop = useCallback(async (files: File[]) => {
     const file = files[0]
     setIsUploading(true)
+    fileUploaded.current = file
     const base64 = await toBase64(file)
-    complete(base64)
     setPreview(base64)
-
-    setTimeout(() => {
-      setIsUploading(false)
-    }, 2000)
+    setIsUploading(false)
+    complete(base64)
+    console.log(isUploading)
+    // TODO: here valid file
   }, [])
 
   const { getRootProps, getInputProps } = useDropzone({
