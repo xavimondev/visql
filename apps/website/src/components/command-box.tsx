@@ -5,12 +5,12 @@ import { copyToClipboard } from '@/helpers'
 import { ADD_COMMAND } from '@/constants'
 
 type CommandBoxProps = {
-  generationId: string | undefined
+  generationCode: string | undefined
 }
 
-export function CommandBox({ generationId }: CommandBoxProps) {
+export function CommandBox({ generationCode }: CommandBoxProps) {
   const [isCopied, setIsCopied] = useState(false)
-  const commandNpx = `${ADD_COMMAND} ${generationId}`
+  const commandNpx = `${ADD_COMMAND} ${generationCode}`
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout> | null = null
@@ -38,8 +38,8 @@ export function CommandBox({ generationId }: CommandBoxProps) {
           <Terminal className='w-4 h-4' />
         )}
         npx dbac add{' '}
-        {generationId ? (
-          <span className='font-semibold'>{generationId}</span>
+        {generationCode ? (
+          <span className='font-semibold'>{generationCode}</span>
         ) : (
           'Loading'
         )}

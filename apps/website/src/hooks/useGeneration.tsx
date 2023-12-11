@@ -6,7 +6,7 @@ import { saveGenerationServer } from '@/actions'
 import { uploadFile } from '@/services/storage'
 
 export const useGeneration = () => {
-  const [generationId, setGenerationId] = useState<string | undefined>(
+  const [generationCode, setGenerationCode] = useState<string | undefined>(
     undefined
   )
   const fileUploaded = useRef<File | undefined>(undefined)
@@ -47,11 +47,11 @@ export const useGeneration = () => {
       },
       error: 'An error has ocurred while saving data.'
     })
-    setGenerationId(id)
+    setGenerationCode(id)
   }
 
   return {
-    generationId,
+    generationCode,
     complete,
     completion,
     fileUploaded
