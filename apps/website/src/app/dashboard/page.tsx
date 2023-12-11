@@ -1,11 +1,12 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { GalleryVertical, ScrollText } from 'lucide-react'
 import { redirect } from 'next/navigation'
 import { createSupabaseServerClient } from '@/db/supabase-server'
 import { getSession } from '@/services/auth-server'
 import { UserNavbar } from '@/components/user-navbar'
 import { PanelGeneration } from '@/components/panel-generation'
+import { GenerationItem } from '@/components/generation-item'
+import { AddGenerationButton } from '@/components/add-generation-button'
 
 export default async function Dashboard() {
   const {
@@ -30,19 +31,22 @@ export default async function Dashboard() {
     <>
       <div className='flex flex-col px-3 2xl:px-4 min-h-screen'>
         <header className='border-b'>
-          <div className='flex h-12 items-center'>
+          <div className='flex h-12 items-center justify-between'>
             <Link
               href='/'
               className='font-semibold sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-700 dark:from-blue-300 dark:to-violet-400'
             >
               dbac
             </Link>
-            <div className='ml-auto flex items-center space-x-4'>
-              <UserNavbar
-                avatar_url={avatar_url}
-                full_name={full_name}
-                user_name={user_name}
-              />
+            <div className='flex gap-2 items-center'>
+              <AddGenerationButton />
+              <div className='ml-auto flex items-center space-x-4'>
+                <UserNavbar
+                  avatar_url={avatar_url}
+                  full_name={full_name}
+                  user_name={user_name}
+                />
+              </div>
             </div>
           </div>
         </header>
@@ -65,27 +69,9 @@ export default async function Dashboard() {
                 </div>
               ) : (
                 <div className='flex flex-col gap-3'>
-                  {data?.map((generation) => {
-                    return (
-                      <button
-                        key={generation.id}
-                        className='flex w-full h-full z-10 cursor-pointer relative outline-none focus-visible:ring-1 focus:ring-gray-700 rounded-md min-h-[25px] min-w-[30px]'
-                      >
-                        <div className='w-full rounded-md border border-black dark:border-gray-500 overflow-hidden'>
-                          <div className='w-full h-full hover:opacity-100 opacity-80 transition-opacity duration-300 ease-in-out'>
-                            <Image
-                              alt='Thumbnail database diagram'
-                              loading='lazy'
-                              width='300'
-                              height='180'
-                              className='object-cover aspect-video'
-                              src={generation.diagram_url}
-                            />
-                          </div>
-                        </div>
-                      </button>
-                    )
-                  })}
+                  {data?.map((generation) => (
+                    <GenerationItem key={generation.id} {...generation} />
+                  ))}
                 </div>
               )}
             </nav>
