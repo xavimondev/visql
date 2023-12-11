@@ -29,7 +29,7 @@ export function CodeEditor({ code }: CodeEditorProps) {
 
   useEffect(() => {
     if (monaco) {
-      monaco.editor.getModels()[0].setValue(code)
+      monaco.editor.getModels()[0].setValue(code || INITIAL_CODE_SQL)
     }
   }, [code])
 
@@ -44,6 +44,7 @@ export function CodeEditor({ code }: CodeEditorProps) {
         </div>
       }
       options={{
+        readOnly: true,
         padding: {
           top: 20
         },
