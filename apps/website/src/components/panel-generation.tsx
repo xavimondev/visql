@@ -21,7 +21,7 @@ export function PanelGeneration() {
           <Dropzone complete={complete} fileUploaded={fileUploaded} />
         )}
         <div className='flex flex-col gap-2 w-full h-full'>
-          <CommandBox generationCode={cmd_code ?? commandCode} />
+          <CommandBox commandCode={cmd_code ?? commandCode} />
           <CodeEditor code={sql_code ?? completion} />
         </div>
       </div>

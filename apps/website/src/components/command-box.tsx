@@ -6,12 +6,12 @@ import { ADD_COMMAND } from '@/constants'
 import { CommandCode } from '@/components/command-code'
 
 type CommandBoxProps = {
-  generationCode: string | undefined
+  commandCode: string | undefined
 }
 
-export function CommandBox({ generationCode }: CommandBoxProps) {
+export function CommandBox({ commandCode }: CommandBoxProps) {
   const [isCopied, setIsCopied] = useState(false)
-  const commandNpx = `${ADD_COMMAND} ${generationCode}`
+  const commandNpx = `${ADD_COMMAND} ${commandCode}`
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout> | null = null
@@ -39,8 +39,8 @@ export function CommandBox({ generationCode }: CommandBoxProps) {
           <Terminal className='w-4 h-4' />
         )}
         npx dbac add{' '}
-        {generationCode ? (
-          <CommandCode commandCode={generationCode} />
+        {commandCode ? (
+          <CommandCode commandCode={commandCode} />
         ) : (
           <div className='w-28 h-4 blur-sm bg-gray-500 animate-pulse rounded-sm'></div>
         )}
