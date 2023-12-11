@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker'
+import ShortUniqueId from 'short-unique-id'
 
 export const toBase64 = (file: File) => {
   return new Promise<string>((resolve, reject) => {
@@ -19,4 +20,9 @@ export const getRandomUser = () => {
     user_name: faker.internet.userName(),
     avatar_url: faker.image.avatar()
   }
+}
+
+export const generateCommandCode = () => {
+  const uid = new ShortUniqueId({ length: 10 })
+  return uid.rnd()
 }
