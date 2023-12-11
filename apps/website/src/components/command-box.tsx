@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Check, Terminal } from 'lucide-react'
 import { copyToClipboard } from '@/helpers'
 import { ADD_COMMAND } from '@/constants'
+import { CommandCode } from '@/components/command-code'
 
 type CommandBoxProps = {
   generationCode: string | undefined
@@ -39,9 +40,9 @@ export function CommandBox({ generationCode }: CommandBoxProps) {
         )}
         npx dbac add{' '}
         {generationCode ? (
-          <span className='font-semibold'>{generationCode}</span>
+          <CommandCode commandCode={generationCode} />
         ) : (
-          'Loading'
+          <div className='w-28 h-4 blur-sm bg-gray-500 animate-pulse rounded-sm'></div>
         )}
       </div>
       <span className='sr-only'>Copy cli command</span>

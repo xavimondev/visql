@@ -9,9 +9,14 @@ type GenerationData = {
 type State = {
   generationData: GenerationData | undefined
   setGenerationData: (generationData: GenerationData | undefined) => void
+  commandCode: string | undefined
+  setCommandCode: (commandCode: string | undefined) => void
 }
 
 export const useStore = create<State>()((set) => ({
   generationData: undefined,
-  setGenerationData: (generationData) => set({ generationData: generationData })
+  setGenerationData: (generationData) =>
+    set({ generationData: generationData }),
+  commandCode: undefined,
+  setCommandCode: (commandCode) => set({ commandCode })
 }))

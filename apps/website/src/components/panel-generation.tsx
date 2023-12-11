@@ -7,8 +7,9 @@ import { CommandBox } from '@/components/command-box'
 import { PreviewImage } from '@/components/preview-image'
 
 export function PanelGeneration() {
-  const { generationCode, complete, completion, fileUploaded } = useGeneration()
+  const { complete, completion, fileUploaded } = useGeneration()
   const generationData = useStore((state) => state.generationData)
+  const commandCode = useStore((state) => state.commandCode)
   const { cmd_code, diagram_url, sql_code } = generationData ?? {}
 
   return (
@@ -20,7 +21,7 @@ export function PanelGeneration() {
           <Dropzone complete={complete} fileUploaded={fileUploaded} />
         )}
         <div className='flex flex-col gap-2 w-full h-full'>
-          <CommandBox generationCode={cmd_code ?? generationCode} />
+          <CommandBox generationCode={cmd_code ?? commandCode} />
           <CodeEditor code={sql_code ?? completion} />
         </div>
       </div>

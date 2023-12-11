@@ -1,14 +1,13 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { useCompletion } from 'ai/react'
 import { toast } from 'sonner'
-import ShortUniqueId from 'short-unique-id'
 import { saveGenerationServer } from '@/actions'
 import { uploadFile } from '@/services/storage'
+import { useStore } from '@/store'
+import { generateCommandCode } from '@/helpers'
 
 export const useGeneration = () => {
-  const [generationCode, setGenerationCode] = useState<string | undefined>(
-    undefined
-  )
+  const setCommandCode = useStore((state) => state.setCommandCode)
   const fileUploaded = useRef<File | undefined>(undefined)
   const { complete, completion } = useCompletion({
     api: 'api/code-generation',
@@ -33,10 +32,9 @@ export const useGeneration = () => {
     }
 
     // Saving in db the generation
-    const uid = new ShortUniqueId({ length: 10 })
-    const id = uid.rnd()
+    const cmd_code = generateCommandCode()
     const generation = {
-      cmd_code: id,
+      cmd_code,
       sql_code: completion,
       diagram_url: path
     }
@@ -47,11 +45,10 @@ export const useGeneration = () => {
       },
       error: 'An error has ocurred while saving data.'
     })
-    setGenerationCode(id)
+    setCommandCode(cmd_code)
   }
 
   return {
-    generationCode,
     complete,
     completion,
     fileUploaded
