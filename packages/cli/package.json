@@ -1,0 +1,43 @@
+{
+  "name": "dbac",
+  "version": "0.0.1",
+  "description": "Generate migrations from database diagrams",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "xavimondev",
+    "url": "https://twitter.com/xavimondev"
+  },
+  "exports": "./dist/index.js",
+  "bin": "./dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "typecheck": "tsc",
+    "clean": "rimraf dist",
+    "start": "node dist/index.js",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "pub:beta": "pnpm build && pnpm publish --no-git-checks --tag beta",
+    "pub:release": "pnpm build && pnpm publish"
+  },
+  "devDependencies": {
+    "@types/node": "20.10.2",
+    "@types/prompts": "2.4.9",
+    "rimraf": "5.0.5",
+    "tsup": "8.0.1",
+    "type-fest": "4.8.3",
+    "typescript": "5.2.2",
+    "zod": "3.22.4"
+  },
+  "dependencies": {
+    "chalk": "5.3.0",
+    "commander": "11.1.0",
+    "execa": "8.0.1",
+    "ora": "7.0.1",
+    "prompts": "2.4.2"
+  }
+}
