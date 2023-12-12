@@ -33,17 +33,13 @@ type DropzoneProps = {
 }
 
 export function Dropzone({ complete, fileUploaded }: DropzoneProps) {
-  const [isUploading, setIsUploading] = useState<boolean>(false)
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
   const onDrop = useCallback(async (files: File[]) => {
     const file = files[0]
-    setIsUploading(true)
     fileUploaded.current = file
     const base64 = await toBase64(file)
     setPreview(base64)
-    setIsUploading(false)
     complete(base64)
-    console.log(isUploading)
     // TODO: here valid file
   }, [])
 
