@@ -20,9 +20,12 @@ export const useGeneration = () => {
   })
 
   const saveGeneration = async ({ completion }: { completion: string }) => {
+    const cmd_code = generateCommandCode()
     const file = fileUploaded.current
+    const filePath = `${cmd_code}${file?.name.replaceAll(' ', '').trim()}`
     // Uploading file
     const path = await uploadFile({
+      filePath,
       file: file as File
     })
 
@@ -32,7 +35,6 @@ export const useGeneration = () => {
     }
 
     // Saving in db the generation
-    const cmd_code = generateCommandCode()
     const generation = {
       cmd_code,
       sql_code: completion,
