@@ -34,11 +34,15 @@ export const useGeneration = () => {
       toast.error('An error has ocurred while uploading file.')
       return
     }
-
+    const sql_code = completion
+      .split('--TABLE\n')
+      .filter((table: string) => table !== '')
+      .join('\n')
+      .trim()
     // Saving in db the generation
     const generation = {
       cmd_code,
-      sql_code: completion,
+      sql_code,
       diagram_url: path
     }
     toast.promise(saveGenerationServer({ generation }), {
