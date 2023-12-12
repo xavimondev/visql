@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import type monacoTypes from 'monaco-editor'
 import { useMonaco } from '@monaco-editor/react'
 import { LoaderIcon } from 'lucide-react'
-import { INITIAL_CODE_SQL } from '@/constants'
+import { INITIAL_CODE } from '@/constants'
 import theme from '@/components/code-editor/themes/odp.json'
 
 const Monaco = dynamic(() => import('@monaco-editor/react'), { ssr: false })
@@ -29,7 +29,7 @@ export function CodeEditor({ code }: CodeEditorProps) {
 
   useEffect(() => {
     if (monaco) {
-      monaco.editor.getModels()[0].setValue(code || INITIAL_CODE_SQL)
+      monaco.editor.getModels()[0].setValue(code || INITIAL_CODE)
     }
   }, [code])
 
@@ -37,7 +37,7 @@ export function CodeEditor({ code }: CodeEditorProps) {
     <Monaco
       height='90vh'
       theme='vs-dark'
-      value={INITIAL_CODE_SQL}
+      value={INITIAL_CODE}
       loading={
         <div className='flex h-[90vh] w-screen items-center justify-center'>
           <LoaderIcon />
