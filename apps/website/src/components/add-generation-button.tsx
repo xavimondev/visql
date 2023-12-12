@@ -13,7 +13,7 @@ export function AddGenerationButton() {
       }}
     >
       <PlusIcon className='mr- w-5 h-5' />
-      Add Generation
+      New Generation
     </Button>
   )
 }
