@@ -7,9 +7,9 @@ import { useStore } from '@/store'
 import { generateCommandCode } from '@/helpers'
 
 export const useGeneration = () => {
-  const setCommandCode = useStore((state) => state.setCommandCode)
+  const setGenerationData = useStore((state) => state.setGenerationData)
   const fileUploaded = useRef<File | undefined>(undefined)
-  const { complete, completion } = useCompletion({
+  const { complete, completion, setCompletion } = useCompletion({
     api: 'api/code-generation',
     onFinish: async (_, completion) => {
       saveGeneration({ completion })
@@ -45,7 +45,8 @@ export const useGeneration = () => {
       },
       error: 'An error has ocurred while saving data.'
     })
-    setCommandCode(cmd_code)
+    setGenerationData(generation)
+    setCompletion('')
   }
 
   return {
