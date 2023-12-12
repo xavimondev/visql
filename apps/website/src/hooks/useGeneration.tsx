@@ -15,7 +15,8 @@ export const useGeneration = () => {
       saveGeneration({ completion })
     },
     onError: (err) => {
-      console.log(err)
+      const error = JSON.parse(err.message)
+      toast.error(error.message)
     }
   })
 
