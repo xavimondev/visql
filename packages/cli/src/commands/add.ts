@@ -1,4 +1,4 @@
-import path, { resolve } from 'node:path'
+import path from 'node:path'
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { Command } from 'commander'
 import chalk from 'chalk'
