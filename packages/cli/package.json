@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
-    "typecheck": "tsc",
+    "lint": "tsc --noEmit",
     "clean": "rimraf dist",
     "start": "cross-env API_DOMAIN=PRODUCTION_URL node dist/index.js",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
