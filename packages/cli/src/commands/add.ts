@@ -9,6 +9,7 @@ import * as z from 'zod'
 import { glob } from 'glob'
 import { logger } from '@/helpers/logger.js'
 import { getSql } from '@/helpers/get-sql.js'
+import { getExecuteCommand } from '@/helpers/get-execute-command.js'
 
 const addArgumentsSchema = z.object({
   generation: z.string().optional()
@@ -59,7 +60,6 @@ export const add = new Command()
       const relativePath = path.relative(cwd, defaultDirectory)
       const config = await promptForConfig(relativePath)
       const pickedPath = config.path ?? relativePath
-      console.log(`Relative path: ${pickedPath}`)
 
       if (!existsSync(pickedPath) && pickedPath !== 'supabase') {
         mkdirSync(pickedPath, {
@@ -70,7 +70,8 @@ export const add = new Command()
       if (!pathFound) {
         const spinner = ora(`Initializing Supabase project...`).start()
         // 1. Initialize supabase project
-        await execa('npx', ['supabase', 'init'], {
+        const executeCommand = await getExecuteCommand({ targetDir: cwd })
+        await execa(executeCommand, ['supabase', 'init'], {
           cwd: pickedPath === 'supabase' ? cwd : pickedPath
         })
         spinner.succeed()
