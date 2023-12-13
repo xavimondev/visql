@@ -1,5 +1,5 @@
 {
-  "name": "dbac",
+  "name": "visql",
   "version": "0.0.1",
   "description": "Generate migrations from database diagrams",
   "license": "MIT",

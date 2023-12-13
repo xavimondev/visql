@@ -6,9 +6,9 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,js}\"",
-    "lint:cli": "turbo lint --filter=dbac",
-    "build:cli": "turbo --filter=dbac build",
-    "dev:cli": "turbo --filter=dbac dev",
+    "lint:cli": "turbo lint --filter=visql",
+    "build:cli": "turbo --filter=visql build",
+    "dev:cli": "turbo --filter=visql dev",
     "release:cli": "changeset publish"
   },
   "devDependencies": {
