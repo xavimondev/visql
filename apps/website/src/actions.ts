@@ -1,6 +1,7 @@
 'use server'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
+import { Redis } from '@upstash/redis'
 import { signInWithEmail } from '@/services/auth-server'
 import { addGeneration } from '@/services/generation'
 
@@ -32,12 +33,19 @@ export const sentEmail = async (prevState: any, formData: FormData) => {
   }
 }
 
+// TODO: add types
 export const saveGenerationServer = async ({
   generation
 }: {
   generation: any
 }) => {
-  const result = await addGeneration(generation)
-  revalidatePath('/dashboard')
-  return result
+  const { cmd_code, sql_code } = generation
+  const redis = Redis.fromEnv()
+  const res = await redis.set(cmd_code, sql_code)
+  if (res === 'OK') {
+    const result = await addGeneration(generation)
+    revalidatePath('/dashboard')
+    return result
+  }
+  return null
 }
