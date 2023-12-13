@@ -1,6 +1,6 @@
 {
   "name": "visql",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generate migrations from database diagrams",
   "license": "MIT",
   "type": "module",
@@ -18,7 +18,7 @@
     "build": "tsup",
     "lint": "tsc --noEmit",
     "clean": "rimraf dist",
-    "start": "cross-env API_DOMAIN=PRODUCTION_URL node dist/index.js",
+    "start": "cross-env API_DOMAIN=https://visql.vercel.app node dist/index.js",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "pub:beta": "pnpm build && pnpm publish --no-git-checks --tag beta",
