@@ -40,6 +40,13 @@ export const add = new Command()
         logger.warn('No generation code provided. Exiting.')
         process.exit(0)
       }
+
+      // Checking whether code is valid or not
+      const tables = await getSql({ generationCode })
+      if (!tables) {
+        logger.error('The given generation code is wrong. Exiting.')
+        process.exit(0)
+      }
       const cwd = path.resolve(process.cwd())
       let defaultDirectory = `${cwd}/supabase`
 
@@ -88,9 +95,7 @@ export const add = new Command()
         })
       }
 
-      // 3. Reading tables from database
-      const tables = await getSql(generation)
-      // 4. Add tables sql to migration file
+      // 3. Add tables sql to migration file
       const now = new Date()
       const formattedTimestamp = now
         .toISOString()
