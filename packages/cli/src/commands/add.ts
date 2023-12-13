@@ -10,6 +10,7 @@ import { glob } from 'glob'
 import { logger } from '@/helpers/logger.js'
 import { getSql } from '@/helpers/get-sql.js'
 import { getExecuteCommand } from '@/helpers/get-execute-command.js'
+import { showNextSteps } from '@/helpers/show-next-steps.js'
 
 const addArgumentsSchema = z.object({
   generation: z.string().optional()
@@ -110,6 +111,8 @@ export const add = new Command()
       )
       migrationSpinner.succeed()
       logger.info(`${chalk.green('Success!')} Migrations added successfully.`)
+      logger.break()
+      showNextSteps({ projectExists: Boolean(pathFound) })
     } catch (error) {
       console.error(error)
     }
