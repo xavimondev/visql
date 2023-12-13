@@ -7,5 +7,5 @@
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["apps","packages/eslint-config","packages/typescript-config"]
+  "ignore": []
 }
