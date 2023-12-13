@@ -9,7 +9,8 @@
     "lint:cli": "turbo lint --filter=visql",
     "build:cli": "turbo --filter=visql build",
     "dev:cli": "turbo --filter=visql dev",
-    "release:cli": "changeset publish"
+    "release:cli": "changeset publish",
+    "dev:web": "turbo --filter=website dev"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
