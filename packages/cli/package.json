@@ -1,6 +1,6 @@
 {
   "name": "visql",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate migrations from database diagrams",
   "license": "MIT",
   "type": "module",
