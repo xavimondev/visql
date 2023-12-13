@@ -53,7 +53,7 @@ export function UserNavbar({
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Link
-              href='https://github.com/xavimondev/dbac'
+              href='https://github.com/xavimondev/visql'
               className='flex items-center'
             >
               <Github className='mr-2 h-4 w-4' />

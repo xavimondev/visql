@@ -40,7 +40,7 @@ export function CommandBox({ commandCode }: CommandBoxProps) {
         ) : (
           <Terminal className='w-4 h-4' />
         )}
-        npx dbac add{' '}
+        npx visql add{' '}
         {commandCode ? (
           <CommandCode commandCode={commandCode} />
         ) : (

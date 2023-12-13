@@ -7,7 +7,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'DBac - Database Diagram as Code',
+  title: 'visql',
   description: 'Generated SQL schema from your database diagram'
 }
 

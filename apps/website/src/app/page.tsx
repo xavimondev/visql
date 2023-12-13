@@ -11,11 +11,11 @@ export default function Home() {
             href='/'
             className='font-semibold sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-700 dark:from-blue-300 dark:to-violet-400'
           >
-            dbac
+            visql
           </Link>
           <div className='flex gap-2 items-center'>
             <Link
-              href='https://github.com/xavimondev/dbac'
+              href='https://github.com/xavimondev/visql'
               aria-label='Go to Repository'
               target='_blank'
               rel='noreferrer'
