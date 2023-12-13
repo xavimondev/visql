@@ -17,4 +17,5 @@ jobs:
           node-version: 18.x
           cache: "pnpm"
 
+      - run: pnpm install
       - run: pnpm run lint:cli && pnpm run build:cli
