@@ -5,7 +5,10 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md,js}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md,js}\"",
+    "lint:cli": "turbo lint --filter=dbac",
+    "build:cli": "turbo --filter=dbac build",
+    "dev:cli": "turbo --filter=dbac dev"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
