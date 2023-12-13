@@ -8,9 +8,11 @@
     "format": "prettier --write \"**/*.{ts,tsx,md,js}\"",
     "lint:cli": "turbo lint --filter=dbac",
     "build:cli": "turbo --filter=dbac build",
-    "dev:cli": "turbo --filter=dbac dev"
+    "dev:cli": "turbo --filter=dbac dev",
+    "release:cli": "changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "prettier": "3.1.0",
