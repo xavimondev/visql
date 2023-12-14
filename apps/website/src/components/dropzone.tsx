@@ -3,17 +3,13 @@ import { useCallback, useState, MutableRefObject } from 'react'
 import { type RequestOptions } from 'ai'
 import Image from 'next/image'
 import { useDropzone } from 'react-dropzone'
-import { TableProperties } from 'lucide-react'
 import { toBase64 } from '@/helpers'
+import { IllustrationLoader } from '@/components/illustration-loader'
 
 function DropzoneBody() {
   return (
     <div className='flex flex-col space-y-4 items-center'>
-      <div className='relative w-full h-48'>
-        <TableProperties className='absolute w-24 h-24 text-gray-300 right-8 top-10' />
-        <TableProperties className='absolute w-24 h-24 text-gray-300 right-52 top-3' />
-        <TableProperties className='absolute w-24 h-24 text-gray-300 right-32 top-24' />
-      </div>
+      <IllustrationLoader src='add-files.svg' />
       <span className='uppercase text-5xl font-medium text-gray-300'>
         Drag & Drop
       </span>

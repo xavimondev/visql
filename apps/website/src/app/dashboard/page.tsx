@@ -53,7 +53,7 @@ export default async function Dashboard() {
           </div>
         </header>
         <div className='w-full flex overflow-hidden h-[calc(100vh-50px)]'>
-          <aside className='w-64 border-r border-zinc-200 dark:border-zinc-800 overflow-auto'>
+          <aside className='w-40 overflow-auto'>
             <nav className='h-full flex flex-col gap-4'>
               <div className='flex gap-2 items-center text-zinc-500 dark:text-gray-300 py-2'>
                 <GalleryVertical className='w-5 h-5' />
