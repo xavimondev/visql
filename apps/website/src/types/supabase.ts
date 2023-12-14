@@ -44,30 +44,6 @@ export interface Database {
           }
         ]
       }
-      users: {
-        Row: {
-          created_at: string
-          id: string
-          name: string
-          photo_url: string
-          username: string
-        }
-        Insert: {
-          created_at?: string
-          id: string
-          name: string
-          photo_url: string
-          username: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          name?: string
-          photo_url?: string
-          username?: string
-        }
-        Relationships: []
-      }
     }
     Views: {
       [_ in never]: never
