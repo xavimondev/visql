@@ -7,9 +7,10 @@ import { CommandCode } from '@/components/command-code'
 
 type CommandBoxProps = {
   commandCode: string | undefined
+  hasEffect?: boolean
 }
 
-export function CommandBox({ commandCode }: CommandBoxProps) {
+export function CommandBox({ commandCode, hasEffect }: CommandBoxProps) {
   const [isCopied, setIsCopied] = useState(false)
   const commandNpx = `${ADD_COMMAND} ${commandCode}`
 
@@ -42,7 +43,7 @@ export function CommandBox({ commandCode }: CommandBoxProps) {
         )}
         npx visql add{' '}
         {commandCode ? (
-          <CommandCode commandCode={commandCode} />
+          <CommandCode commandCode={commandCode} hasEffect={hasEffect} />
         ) : (
           <div className='w-28 h-5 blur-sm bg-gray-600 rounded-sm'></div>
         )}

@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion'
 
-export function CommandCode({ commandCode }: { commandCode: string }) {
+type CommandCodeProps = {
+  commandCode: string
+  hasEffect?: boolean
+}
+
+export function CommandCode({ commandCode, hasEffect }: CommandCodeProps) {
   const variants1 = {
     hidden: { filter: 'blur(10px)', opacity: 0 },
     visible: { filter: 'blur(0px)', opacity: 1 }
@@ -10,7 +15,7 @@ export function CommandCode({ commandCode }: { commandCode: string }) {
       initial='hidden'
       animate='visible'
       transition={{ duration: 1 }}
-      variants={variants1}
+      variants={hasEffect ? variants1 : undefined}
       className='font-semibold drop-shadow-sm'
     >
       {commandCode}
