@@ -10,10 +10,10 @@ function DropzoneBody() {
   return (
     <div className='flex flex-col space-y-4 items-center'>
       <IllustrationLoader src='add-files.svg' />
-      <span className='uppercase text-5xl font-medium text-gray-300'>
+      <span className='uppercase text-5xl font-medium text-black dark:text-gray-300'>
         Drag & Drop
       </span>
-      <p className='text-center text-base text-gray-500'>
+      <p className='text-center text-base text-gray-400 dark:text-gray-500'>
         your database diagram here, or click to select files
       </p>
     </div>
@@ -57,8 +57,9 @@ export function Dropzone({ complete, fileUploaded }: DropzoneProps) {
         h-full 
         flex 
         items-center 
-        justify-center 
-        bg-[#0b0b0b] 
+        justify-center
+        bg-white/75 
+        dark:bg-[#0b0b0b] 
         z-0 rounded-xl 
         shadow-sm 
         transition-colors 
@@ -67,8 +68,10 @@ export function Dropzone({ complete, fileUploaded }: DropzoneProps) {
         cursor-pointer 
         border 
         border-dashed 
-        border-gray-600 
-        hover:border-gray-300'
+        border-gray-500
+        dark:border-gray-600 
+        hover:border-black 
+        dark:hover:border-gray-300'
       >
         <input {...getInputProps()} />
         {preview ? (
