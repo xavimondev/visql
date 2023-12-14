@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { ModeToggle } from '@/components/mode-toggle'
 import { Button } from '@/components/ui/button'
 import { LandingTerminal } from '@/components/landing-terminal'
+import { Logo } from '@/components/logo'
 import { nunitoSans } from './fonts'
 
 export default function Home() {
@@ -15,12 +16,7 @@ export default function Home() {
         </div>
         <header className='sticky top-0 sm:mx-auto sm:max-w-2xl md:max-w-4xl lg:max-w-6xl mt-4 px-4'>
           <div className='flex items-center justify-between'>
-            <Link
-              href='/'
-              className='font-bold text-2xl lg:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600 dark:from-yellow-300 dark:to-orange-500'
-            >
-              viSQL
-            </Link>
+            <Logo />
             <div className='flex gap-2 items-center'>
               <Link
                 href='https://github.com/xavimondev/visql'

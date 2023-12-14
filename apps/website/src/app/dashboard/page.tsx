@@ -1,6 +1,5 @@
-import Link from 'next/link'
-import { GalleryVertical, ScrollText } from 'lucide-react'
 import { redirect } from 'next/navigation'
+import { GalleryVertical, ScrollText } from 'lucide-react'
 import { createSupabaseServerClient } from '@/db/supabase-server'
 import { cn } from '@/lib/utils'
 import { getSession } from '@/services/auth-server'
@@ -8,6 +7,7 @@ import { UserNavbar } from '@/components/user-navbar'
 import { PanelGeneration } from '@/components/panel-generation'
 import { GenerationItem } from '@/components/generation-item'
 import { AddGenerationButton } from '@/components/add-generation-button'
+import { Logo } from '@/components/logo'
 import { inter } from '../fonts'
 
 export default async function Dashboard() {
@@ -39,12 +39,7 @@ export default async function Dashboard() {
       >
         <header className='border-b'>
           <div className='flex h-12 items-center justify-between'>
-            <Link
-              href='/'
-              className='font-semibold sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-700 dark:from-blue-300 dark:to-violet-400'
-            >
-              dbac
-            </Link>
+            <Logo />
             <div className='flex gap-2 items-center'>
               <AddGenerationButton />
               <div className='ml-auto flex items-center space-x-4'>
