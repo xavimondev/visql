@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import { Github } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import { ModeToggle } from '@/components/mode-toggle'
 import { Button } from '@/components/ui/button'
 import { LandingTerminal } from '@/components/landing-terminal'
+import { nunitoSans } from './fonts'
 
 export default function Home() {
   return (
     <>
-      <div className='relative'>
+      <div className={cn(nunitoSans.className, 'relative')}>
         <div className='absolute w-full lg:w-[60%] left-0 lg:left-96 h-96 top-64 opacity-40 filter blur-[150px] z-0'>
           <div className='rounded-md h-96 w-full bg-[#f0a272]'></div>
         </div>
@@ -40,13 +42,13 @@ export default function Home() {
                 <h1 className='mt-1 text-3xl font-bold lg:text-5xl balance text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600 dark:from-yellow-300 dark:to-orange-500'>
                   Build Databases from Designs: Simplified SQL Generation
                 </h1>
-                <p className='text-orange-800 dark:text-orange-200 font-medium'>
+                <p className='text-orange-800 dark:text-orange-200 font-medium text-lg'>
                   Eliminate the complexities of the development process and
                   receive not only generated SQL code but also a command line
                   script for immediate local execution.
                 </p>
                 <div className='mt-4 w-full items-center gap-3 md:flex md:flex-row'>
-                  <Link href='/editor'>
+                  <Link href='/login'>
                     <Button className='w-full'>Get Started</Button>
                   </Link>
                 </div>

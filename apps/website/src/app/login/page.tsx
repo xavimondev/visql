@@ -1,6 +1,8 @@
 import { redirect } from 'next/navigation'
+import { cn } from '@/lib/utils'
 import { getSession } from '@/services/auth-server'
 import { LoginForm } from '@/components/login-form'
+import { inter } from '../fonts'
 
 export default async function Login() {
   const {
@@ -11,10 +13,15 @@ export default async function Login() {
   }
 
   return (
-    <div className='max-w-lg mx-auto min-h-screen grid place-items-center'>
+    <div
+      className={cn(
+        inter.className,
+        `max-w-lg mx-auto min-h-screen grid place-items-center`
+      )}
+    >
       <div className='w-full flex flex-col gap-4 border border-gray-600/10 rounded-lg p-10'>
         <div className='flex flex-col space-y-2 text-center'>
-          <h1 className='text-2xl font-semibold tracking-tight'>
+          <h1 className='text-2xl font-bold tracking-tight'>
             Create an account
           </h1>
           <p className='text-sm text-muted-foreground'>

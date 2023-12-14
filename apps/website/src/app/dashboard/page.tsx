@@ -2,11 +2,13 @@ import Link from 'next/link'
 import { GalleryVertical, ScrollText } from 'lucide-react'
 import { redirect } from 'next/navigation'
 import { createSupabaseServerClient } from '@/db/supabase-server'
+import { cn } from '@/lib/utils'
 import { getSession } from '@/services/auth-server'
 import { UserNavbar } from '@/components/user-navbar'
 import { PanelGeneration } from '@/components/panel-generation'
 import { GenerationItem } from '@/components/generation-item'
 import { AddGenerationButton } from '@/components/add-generation-button'
+import { inter } from '../fonts'
 
 export default async function Dashboard() {
   const {
@@ -29,7 +31,12 @@ export default async function Dashboard() {
 
   return (
     <>
-      <div className='flex flex-col px-3 2xl:px-4 min-h-screen'>
+      <div
+        className={cn(
+          inter.className,
+          'flex flex-col px-3 2xl:px-4 min-h-screen'
+        )}
+      >
         <header className='border-b'>
           <div className='flex h-12 items-center justify-between'>
             <Link
