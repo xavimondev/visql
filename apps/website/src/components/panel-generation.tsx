@@ -12,7 +12,7 @@ export function PanelGeneration() {
   const { cmd_code, diagram_url, sql_code } = generationData ?? {}
 
   return (
-    <div className='flex flex-col gap-2 w-full h-full'>
+    <div className='flex md:flex-col gap-2 w-full h-full'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-3 w-full h-full'>
         {diagram_url ? (
           <PreviewImage diagram_url={diagram_url} />

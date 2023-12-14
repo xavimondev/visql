@@ -35,7 +35,7 @@ export function CodeEditor({ code }: CodeEditorProps) {
 
   return (
     <Monaco
-      height='90vh'
+      height='100%'
       theme='vs-dark'
       value={INITIAL_CODE}
       loading={

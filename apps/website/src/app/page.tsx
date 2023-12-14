@@ -10,9 +10,14 @@ import { nunitoSans } from './fonts'
 export default function Home() {
   return (
     <>
-      <div className={cn(nunitoSans.className, 'relative')}>
-        <div className='absolute w-full lg:w-[60%] left-0 lg:left-96 h-96 top-64 opacity-40 filter blur-[150px] z-0'>
-          <div className='rounded-md h-96 w-full bg-[#f0a272]'></div>
+      <div
+        className={cn(
+          nunitoSans.className,
+          'relative md:h-screen md:overflow-y-hidden md:overscroll-y-none'
+        )}
+      >
+        <div className='absolute w-full lg:w-[60%] left-0 lg:left-96 h-80 xl:h-96 top-64 opacity-40 filter blur-[150px] z-0'>
+          <div className='rounded-md h-80 xl:h-96 w-full bg-[#f0a272]'></div>
         </div>
         <header className='sticky top-0 sm:mx-auto sm:max-w-2xl md:max-w-4xl lg:max-w-6xl mt-4 px-4'>
           <div className='flex items-center justify-between'>
@@ -32,7 +37,7 @@ export default function Home() {
           </div>
         </header>
         <main className='w-full h-full px-5 sm:mx-auto sm:max-w-2xl md:max-w-4xl lg:max-w-6xl xl:max-w-[85rem]'>
-          <section className='w-full h-full z-10 flex items-center pt-28 sm:pt-36 md:py-56'>
+          <section className='w-full h-full z-10 flex items-center justify-center'>
             <div className='grid md:grid-cols-2 gap-4 md:gap-6 items-center'>
               <div className='flex flex-col gap-4'>
                 <h1 className='mt-1 text-3xl font-bold lg:text-5xl balance text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600 dark:from-yellow-300 dark:to-orange-500'>
@@ -57,21 +62,19 @@ export default function Home() {
             </div>
           </section>
         </main>
-        <footer className='w-full bottom-0'>
-          <div className='mx-auto text-center px-6 sm:px-0 mt-14 sm:mt-14'>
-            <span className='text-gray-800 dark:text-orange-200 text-base sm:text-lg'>
-              Built with 🧡 by
-              <a
-                href='https://twitter.com/xavimonp'
-                rel='noopener'
-                target='_blank'
-                className='underline underline-offset-4'
-              >
-                {' '}
-                xavimon
-              </a>
-            </span>
-          </div>
+        <footer className='w-full absolute bottom-2.5 left-0 right-0 text-center'>
+          <span className='text-gray-800 dark:text-orange-200 text-base sm:text-lg'>
+            Built with 🧡 by
+            <a
+              href='https://twitter.com/xavimonp'
+              rel='noopener'
+              target='_blank'
+              className='underline underline-offset-4'
+            >
+              {' '}
+              xavimon
+            </a>
+          </span>
         </footer>
       </div>
     </>

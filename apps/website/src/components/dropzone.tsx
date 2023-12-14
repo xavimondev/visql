@@ -10,10 +10,10 @@ function DropzoneBody() {
   return (
     <div className='flex flex-col space-y-4 items-center'>
       <IllustrationLoader src='add-files.svg' />
-      <span className='uppercase text-5xl font-medium text-black dark:text-gray-300'>
+      <span className='uppercase text-3xl sm:text-5xl font-medium text-black dark:text-gray-300'>
         Drag & Drop
       </span>
-      <p className='text-center text-base text-gray-400 dark:text-gray-500'>
+      <p className='text-center text-sm sm:text-base text-gray-400 dark:text-gray-500'>
         your database diagram here, or click to select files
       </p>
     </div>

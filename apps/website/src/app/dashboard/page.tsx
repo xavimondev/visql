@@ -32,10 +32,7 @@ export default async function Dashboard() {
   return (
     <>
       <div
-        className={cn(
-          inter.className,
-          'flex flex-col px-3 2xl:px-4 min-h-screen'
-        )}
+        className={cn(inter.className, 'flex flex-col px-3 2xl:px-4 h-screen')}
       >
         <header className='border-b'>
           <div className='flex h-12 items-center justify-between'>
@@ -52,8 +49,8 @@ export default async function Dashboard() {
             </div>
           </div>
         </header>
-        <div className='w-full flex overflow-hidden h-[calc(100vh-50px)]'>
-          <aside className='w-40 overflow-auto'>
+        <div className='w-full h-full flex flex-col md:flex-row'>
+          <aside className='w-40 overflow-auto hidden md:block'>
             <nav className='h-full flex flex-col gap-4'>
               <div className='flex gap-2 items-center text-zinc-500 dark:text-gray-300 py-2'>
                 <GalleryVertical className='w-5 h-5' />
