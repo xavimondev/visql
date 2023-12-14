@@ -26,3 +26,59 @@ export const generateCommandCode = () => {
   const uid = new ShortUniqueId({ length: 10 })
   return uid.rnd()
 }
+
+export const getLines = ({ randomId }: { randomId: string }) => {
+  return [
+    {
+      text: `npx visql add ${randomId}`,
+      cmd: true,
+      delay: 1000
+    },
+    {
+      text: 'Where would you like to add your migrations ? › supabase',
+      cmd: false,
+      delay: 1000
+    },
+    {
+      text: 'Initializing Supabase project...',
+      cmd: false,
+      delay: 600,
+      isLoading: true
+    },
+    {
+      text: 'Adding migrations...',
+      cmd: false,
+      delay: 800,
+      isLoading: true
+    },
+    {
+      text: 'Success! Migrations added successfully.',
+      delay: 1000,
+      cmd: false
+    },
+    {
+      text: '',
+      cmd: false
+    },
+    {
+      text: `Next Steps:`,
+      cmd: false
+    },
+    {
+      text: `supabase login`,
+      cmd: false
+    },
+    {
+      text: `supabase link --project-ref YOUR_PROJECT_ID`,
+      cmd: false
+    },
+    {
+      text: `supabase db push --linked`,
+      cmd: false
+    }
+  ]
+}
+
+export const sleep = async ({ delay = 110 }: { delay?: number }) => {
+  return new Promise((resolve) => setTimeout(resolve, delay))
+}

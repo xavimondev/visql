@@ -74,3 +74,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .balance {
+    text-wrap: balance;
+  }
+}
