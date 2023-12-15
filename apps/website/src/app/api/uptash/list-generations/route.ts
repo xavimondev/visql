@@ -1,8 +1,6 @@
 import { Redis } from '@upstash/redis'
 import { NextResponse } from 'next/server'
 
-export const runtime = 'edge'
-
 const redis = Redis.fromEnv()
 
 export async function GET(req: Request) {
