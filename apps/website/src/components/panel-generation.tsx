@@ -1,6 +1,6 @@
 'use client'
 import { useStore } from '@/store'
-import { useGeneration } from '@/hooks/useGeneration'
+import { useGeneration } from '@/hooks/use-generation'
 import { CodeEditor } from '@/components/code-editor'
 import { Dropzone } from '@/components/dropzone'
 import { CommandBox } from '@/components/command-box'
