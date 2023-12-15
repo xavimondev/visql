@@ -142,7 +142,7 @@ pnpm dev:cli
 
 ## License
 
-This project is licensed under the **MIT License** - see the [**MIT License**](https://github.com/xavimondev/visql/blob/main/LICENSE) file for details.
+[**Creative Commons Legal Code**](https://github.com/xavimondev/visql/blob/main/LICENSE).
 
 ## Useful links
 
