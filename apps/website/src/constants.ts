@@ -7,3 +7,5 @@ export const APP_URL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : 'https://visql.vercel.app'
+
+export const RATE_LIMIT = 2

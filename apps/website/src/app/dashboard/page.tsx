@@ -8,6 +8,7 @@ import { PanelGeneration } from '@/components/panel-generation'
 import { ListGenerations } from '@/components/list-generations'
 import { AddGenerationButton } from '@/components/add-generation-button'
 import { Logo } from '@/components/logo'
+import { Remaining } from '@/components/remaining'
 import { inter } from '../fonts'
 
 export default async function Dashboard() {
@@ -38,6 +39,7 @@ export default async function Dashboard() {
           <div className='flex h-12 items-center justify-between'>
             <Logo />
             <div className='flex gap-2 items-center'>
+              <Remaining />
               <AddGenerationButton />
               <div className='ml-auto flex items-center space-x-4'>
                 <UserNavbar
