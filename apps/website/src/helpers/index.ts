@@ -27,10 +27,10 @@ export const generateCommandCode = () => {
   return uid.rnd()
 }
 
-export const getLines = ({ randomId }: { randomId: string }) => {
+export const getLines = () => {
   return [
     {
-      text: `npx visql add ${randomId}`,
+      text: `npx visql add w31c0m3`,
       cmd: true,
       delay: 1000
     },

@@ -10,7 +10,6 @@ interface Line {
 }
 
 const defaultFolder = '~ website/ '
-const randomIds = ['w31c0m3', 't3rm1nal', 'h3ll0']
 
 function TerminalHeader() {
   return (
@@ -30,7 +29,7 @@ function TerminalBody() {
   const [commandLine, setCommandLine] = useState(true)
 
   useEffect(() => {
-    setLines(getLines({ randomId: randomIds.at(0) as string }))
+    setLines(getLines())
   }, [])
 
   useEffect(() => {
