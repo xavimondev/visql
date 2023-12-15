@@ -88,7 +88,7 @@ ViSQL is a platform to convert your database diagrams into functional SQL code e
 
 ## Setting Up
 
-### NEXT_PUBLIC_SUPABASE_URL- NEXT_PUBLIC_SUPABASE_ANON_KEY
+### NEXT_PUBLIC_SUPABASE_URL - NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 1. Sign In on Supabase.
 2. Go to settings option on sidebar.
@@ -122,12 +122,6 @@ git clone https://github.com/xavimondev/visql
 
 ```bash
 pnpm install
-
-bun install
-
-npm install
-
-yarn install
 ```
 
 3.Start the development:
@@ -148,7 +142,7 @@ pnpm dev:cli
 
 ## License
 
-[**MIT**](https://choosealicense.com)
+This project is licensed under the **MIT License** - see the [**MIT License**](https://github.com/xavimondev/visql/blob/main/LICENSE) file for details.
 
 ## Useful links
 
@@ -167,4 +161,3 @@ bun upgrade
 ```
 
 More details: **https://twitter.com/bunjavascript/status/1734470860755566815**
-
