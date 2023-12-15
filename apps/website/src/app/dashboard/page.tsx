@@ -3,6 +3,7 @@ import { GalleryVertical, ScrollText } from 'lucide-react'
 import { createSupabaseServerClient } from '@/db/supabase-server'
 import { cn } from '@/lib/utils'
 import { getSession } from '@/services/auth-server'
+import { getRemaining } from '@/actions'
 import { UserNavbar } from '@/components/user-navbar'
 import { PanelGeneration } from '@/components/panel-generation'
 import { ListGenerations } from '@/components/list-generations'
@@ -30,6 +31,8 @@ export default async function Dashboard() {
     .select('id,cmd_code,sql_code,diagram_url')
     .order('created_at', { ascending: false })
 
+  const remaining = await getRemaining()
+
   return (
     <>
       <div
@@ -39,7 +42,7 @@ export default async function Dashboard() {
           <div className='flex h-12 items-center justify-between'>
             <Logo />
             <div className='flex gap-2 items-center'>
-              <Remaining />
+              <Remaining remaining={remaining ?? 0} />
               <AddGenerationButton />
               <div className='ml-auto flex items-center space-x-4'>
                 <UserNavbar
