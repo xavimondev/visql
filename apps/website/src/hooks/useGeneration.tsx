@@ -8,8 +8,10 @@ import { generateCommandCode } from '@/helpers'
 
 export const useGeneration = () => {
   const setGenerationData = useStore((state) => state.setGenerationData)
+  const setIsSavingGeneration = useStore((state) => state.setIsSavingGeneration)
   const fileUploaded = useRef<File | undefined>(undefined)
   const { complete, completion, setCompletion } = useCompletion({
+    id: 'visql',
     api: 'api/code-generation',
     onFinish: async (_, completion) => {
       saveGeneration({ completion })
@@ -21,6 +23,7 @@ export const useGeneration = () => {
   })
 
   const saveGeneration = async ({ completion }: { completion: string }) => {
+    setIsSavingGeneration(true)
     const cmd_code = generateCommandCode()
     const file = fileUploaded.current
     const filePath = `${cmd_code}${file?.name.replaceAll(' ', '').trim()}`
@@ -48,6 +51,7 @@ export const useGeneration = () => {
     toast.promise(saveGenerationServer({ generation }), {
       loading: 'Saving Generation...',
       success: () => {
+        setIsSavingGeneration(false)
         return `Generation saved successfully.`
       },
       error: 'An error has ocurred while saving data.'

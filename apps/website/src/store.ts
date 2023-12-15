@@ -11,6 +11,8 @@ type State = {
   setGenerationData: (generationData: GenerationData | undefined) => void
   commandCode: string | undefined
   setCommandCode: (commandCode: string | undefined) => void
+  isSavingGeneration: boolean
+  setIsSavingGeneration: (isSavingGeneration: boolean) => void
 }
 
 export const useStore = create<State>()((set) => ({
@@ -18,5 +20,7 @@ export const useStore = create<State>()((set) => ({
   setGenerationData: (generationData) =>
     set({ generationData: generationData }),
   commandCode: undefined,
-  setCommandCode: (commandCode) => set({ commandCode })
+  setCommandCode: (commandCode) => set({ commandCode }),
+  isSavingGeneration: false,
+  setIsSavingGeneration: (isSavingGeneration) => set({ isSavingGeneration })
 }))

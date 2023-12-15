@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { getSession } from '@/services/auth-server'
 import { UserNavbar } from '@/components/user-navbar'
 import { PanelGeneration } from '@/components/panel-generation'
-import { GenerationItem } from '@/components/generation-item'
+import { ListGenerations } from '@/components/list-generations'
 import { AddGenerationButton } from '@/components/add-generation-button'
 import { Logo } from '@/components/logo'
 import { inter } from '../fonts'
@@ -67,11 +67,7 @@ export default async function Dashboard() {
                   </p>
                 </div>
               ) : (
-                <div className='flex flex-col gap-3'>
-                  {data?.map((generation) => (
-                    <GenerationItem key={generation.id} {...generation} />
-                  ))}
-                </div>
+                <ListGenerations data={data} />
               )}
             </nav>
           </aside>

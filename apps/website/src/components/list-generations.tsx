@@ -1,4 +1,5 @@
 'use client'
+import { useCompletion } from 'ai/react'
 import Image from 'next/image'
 import { useStore } from '@/store'
 import {
@@ -7,15 +8,17 @@ import {
   HoverCardTrigger
 } from '@/components/ui/hover-card'
 import { CommandBox } from '@/components/command-box'
+import { LoadingIndicator } from '@/components/loading-indicator'
+import { GenerationInsert } from '@/types'
 
 type GenerationProps = {
-  id: string
+  id?: string
   diagram_url: string
   cmd_code: string
   sql_code: string
 }
 
-export function GenerationItem({
+function GenerationItem({
   id,
   diagram_url,
   cmd_code,
@@ -87,5 +90,26 @@ export function GenerationItem({
         </div>
       </HoverCardContent>
     </HoverCard>
+  )
+}
+
+export function ListGenerations({
+  data
+}: {
+  data: (typeof GenerationInsert)[]
+}) {
+  const { isLoading } = useCompletion({
+    id: 'visql'
+  })
+  const isSavingGeneration = useStore((state) => state.isSavingGeneration)
+  return (
+    <>
+      {(isLoading || isSavingGeneration) && <LoadingIndicator />}
+      <div className='flex flex-col gap-3'>
+        {data?.map((generation: typeof GenerationInsert) => (
+          <GenerationItem key={generation.id} {...generation} />
+        ))}
+      </div>
+    </>
   )
 }
