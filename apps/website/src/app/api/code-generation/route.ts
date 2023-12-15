@@ -1,19 +1,11 @@
 import OpenAI from 'openai'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 import { NextResponse } from 'next/server'
-import { Redis } from '@upstash/redis'
-import { Ratelimit } from '@upstash/ratelimit'
 import { PROMPT } from '@/prompt'
 import { getSession } from '@/services/auth-server'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_TOKEN
-})
-
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(2, '1440 m'),
-  analytics: true
 })
 
 export const runtime = 'edge'
@@ -27,26 +19,6 @@ export async function POST(req: Request) {
   }
 
   try {
-    // Rate Limiting by user email
-    if (ratelimit) {
-      const email = sessionData.user.email
-      const { success, limit, reset, remaining } = await ratelimit.limit(
-        email as string
-      )
-      if (!success) {
-        return NextResponse.json(
-          { message: 'You have reached your request limit for the day.' },
-          {
-            status: 429,
-            headers: {
-              'X-RateLimit-Limit': limit.toString(),
-              'X-RateLimit-Remaining': remaining.toString(),
-              'X-RateLimit-Reset': reset.toString()
-            }
-          }
-        )
-      }
-    }
     const response = await openai.chat.completions.create({
       model: 'gpt-4-vision-preview',
       stream: true,
