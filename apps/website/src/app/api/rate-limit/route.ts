@@ -13,29 +13,43 @@ export async function GET() {
   const session = await getSession()
   const sessionData = session.data.session
 
-  if (!sessionData) {
-    return NextResponse.json({ message: 'Login to generate.' }, { status: 500 })
-  }
-  // Rate Limiting by user email
-  if (ratelimit) {
-    const email = sessionData.user.email
-    const { success, limit, reset, remaining } = await ratelimit.limit(
-      email as string
-    )
-    if (!success) {
+  try {
+    if (!sessionData) {
       return NextResponse.json(
-        { message: 'You have reached your request limit for the day.' },
-        {
-          status: 429,
-          headers: {
-            'X-RateLimit-Limit': limit.toString(),
-            'X-RateLimit-Remaining': remaining.toString(),
-            'X-RateLimit-Reset': reset.toString()
-          }
-        }
+        { message: 'Login to generate.' },
+        { status: 500 }
       )
     }
-  }
+    // Rate Limiting by user email
+    if (ratelimit) {
+      const email = sessionData.user.email
+      const { success, limit, reset, remaining } = await ratelimit.limit(
+        email as string
+      )
+      if (!success) {
+        return NextResponse.json(
+          { message: 'You have reached your request limit for the day.' },
+          {
+            status: 429,
+            headers: {
+              'X-RateLimit-Limit': limit.toString(),
+              'X-RateLimit-Remaining': remaining.toString(),
+              'X-RateLimit-Reset': reset.toString()
+            }
+          }
+        )
+      }
+      return NextResponse.json({ message: 'OK' })
+    }
 
-  return NextResponse.json({ message: 'OK' })
+    return NextResponse.json(
+      { message: 'Enter your Uptash API Keys' },
+      { status: 500 }
+    )
+  } catch (error) {
+    return NextResponse.json(
+      { message: 'An error has ocurred while validating rate limit.' },
+      { status: 500 }
+    )
+  }
 }
