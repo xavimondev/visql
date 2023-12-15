@@ -3,7 +3,9 @@ import { useCallback, useState, MutableRefObject } from 'react'
 import { type RequestOptions } from 'ai'
 import Image from 'next/image'
 import { useDropzone } from 'react-dropzone'
+import { toast } from 'sonner'
 import { toBase64 } from '@/helpers'
+import { rateLimit } from '@/services/rate-limit'
 import { IllustrationLoader } from '@/components/illustration-loader'
 
 function DropzoneBody() {
@@ -35,8 +37,12 @@ export function Dropzone({ complete, fileUploaded }: DropzoneProps) {
     fileUploaded.current = file
     const base64 = await toBase64(file)
     setPreview(base64)
-    complete(base64)
-    // TODO: here valid file
+    const data = await rateLimit()
+    if (data.message === 'OK') {
+      complete(base64)
+      return
+    }
+    toast.error(data.message)
   }, [])
 
   const { getRootProps, getInputProps } = useDropzone({
