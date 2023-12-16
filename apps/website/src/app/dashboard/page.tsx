@@ -58,7 +58,7 @@ export default async function Dashboard() {
           <aside className='w-40 overflow-auto hidden md:block'>
             <nav className='h-full flex flex-col gap-4'>
               <div className='flex gap-2 items-center text-zinc-500 dark:text-gray-300 py-2'>
-                <GalleryVertical className='w-5 h-5' />
+                <GalleryVertical className='w-4 h-4' />
                 <h2 className='font-semibold'>Generations</h2>
               </div>
               {data?.length === 0 || error ? (

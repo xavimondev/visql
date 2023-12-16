@@ -6,7 +6,7 @@ type PreviewImageProps = {
 
 export function PreviewImage({ diagram_url }: PreviewImageProps) {
   return (
-    <div className='w-full h-full flex items-center justify-center border'>
+    <div className='w-full h-full flex items-center justify-center border border-gray-600/30 rounded-md'>
       <Image
         src={diagram_url}
         alt='Database diagram'

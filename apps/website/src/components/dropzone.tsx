@@ -66,7 +66,7 @@ export function Dropzone({ complete, fileUploaded }: DropzoneProps) {
         justify-center
         bg-white/75 
         dark:bg-[#0b0b0b] 
-        z-0 rounded-xl 
+        z-0 rounded-md 
         shadow-sm 
         transition-colors 
         duration-200 
