@@ -4,6 +4,7 @@ import { type RequestOptions } from 'ai'
 import Image from 'next/image'
 import { useDropzone } from 'react-dropzone'
 import { toast } from 'sonner'
+import NSFWFilter from 'nsfw-filter'
 import { toBase64 } from '@/helpers'
 import { rateLimit } from '@/services/rate-limit'
 import { IllustrationLoader } from '@/components/illustration-loader'
@@ -34,15 +35,28 @@ export function Dropzone({ complete, fileUploaded }: DropzoneProps) {
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(null)
   const onDrop = useCallback(async (files: File[]) => {
     const file = files[0]
-    fileUploaded.current = file
-    const base64 = await toBase64(file)
-    setPreview(base64)
-    const data = await rateLimit()
-    if (data.message === 'OK') {
+
+    try {
+      const isSafe = await NSFWFilter.isSafe(file)
+      if (!isSafe) {
+        toast.error('NSFW Image blocked.')
+        return
+      }
+
+      const data = await rateLimit()
+      if (data.message !== 'OK') {
+        toast.error(data.message)
+        return
+      }
+
+      fileUploaded.current = file
+      const base64 = await toBase64(file)
+      setPreview(base64)
+
       complete(base64)
-      return
+    } catch (error) {
+      toast.error('An error has ocurrent while loading image.')
     }
-    toast.error(data.message)
   }, [])
 
   const { getRootProps, getInputProps } = useDropzone({
