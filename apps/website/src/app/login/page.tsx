@@ -19,7 +19,7 @@ export default async function Login() {
         `max-w-lg mx-auto min-h-screen grid place-items-center`
       )}
     >
-      <div className='w-full flex flex-col gap-4 border border-gray-600/10 rounded-lg p-10'>
+      <div className='w-full flex flex-col gap-4 border border-gray-600/30 rounded-md p-10'>
         <div className='flex flex-col space-y-2 text-center'>
           <h1 className='text-2xl font-bold tracking-tight'>
             Create an account
